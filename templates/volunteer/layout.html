@@ -1,0 +1,53 @@
+<div class="flex min-h-screen bg-slate-50 text-slate-800 font-sans">
+
+  <aside class="w-72 bg-white border-r border-slate-200 flex flex-col fixed h-full z-50">
+    <div class="p-8">
+      <div class="items-center space-x-3 mb-10">
+        <div class="rounded-lg mb-2">
+          <img class="rounded-lg" src="https://nsac.basis.org.bd/uploads/images/logo.png" >
+        </div>
+        <div class="text-center">
+          <span class="font-black text-lg tracking-tighter uppercase text-slate-900">
+            Volunteer<span class="text-blue-600 me-2">Panel</span>
+          </span>
+        </div>
+      </div>
+      <nav class="space-y-2">
+        <a href="/volunteer/dashboard"
+           class="sidebar-link {{ nav_dashboard_active }} flex items-center space-x-3 px-4 py-3.5 rounded-xl font-bold text-sm transition-all">
+          <i class="fa-solid fa-list-check w-5"></i>
+          <span>Assigned Teams</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="mt-auto p-8 border-t border-slate-100">
+      <div class="flex items-center space-x-3 p-3 bg-slate-50 rounded-2xl">
+        <img src="{{ judge_avatar_url }}" class="w-10 h-10 rounded-xl" alt="Judge">
+        <div>
+          <p class="text-xs font-black text-slate-900">{{ judge_name }}</p>
+          <p class="text-[10px] text-slate-400 font-bold uppercase">{{ judge_role_label }}</p>
+        </div>
+        <a class="px-2 py-2 rounded-xl text-xs font-bold hover:bg-red-600 hover:text-white" href="/logout">
+            <i class="fa fa-sign-out"></i>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="flex-1 ml-72">
+    <header class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200 flex items-center justify-between px-10 sticky top-0 z-40">
+      <h2 class="font-black text-slate-800 uppercase tracking-widest text-sm">{{ page_title }}</h2>
+      <div class="flex items-center space-x-6">
+        <a class="bg-slate-500 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-red-600 transition-all shadow-lg shadow-slate-900/10"
+                href="/logout">
+          LogOut <i class="fa fa-sign-out ps-2"></i>
+        </a>
+      </div>
+    </header>
+
+    <div class="p-10">
+      {{ content }}
+    </div>
+  </main>
+</div>

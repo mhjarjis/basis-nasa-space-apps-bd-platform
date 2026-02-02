@@ -1,0 +1,123 @@
+<div class="min-h-screen flex items-center justify-center px-4 py-10 relative overflow-hidden">
+
+  <div class="absolute -top-24 -left-24 w-[380px] h-[380px] bg-indigo-300/30 rounded-full blur-3xl"></div>
+  <div class="absolute -bottom-24 -right-24 w-[420px] h-[420px] bg-blue-300/30 rounded-full blur-3xl"></div>
+
+  <div class="w-full max-w-4xl relative">
+    <div class="flex justify-center mb-6">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-xl border border-white/40 shadow-sm">
+        <span class="w-2.5 h-2.5 rounded-full bg-indigo-600 animate-pulse"></span>
+        <span class="text-xs font-black tracking-widest uppercase text-slate-700">Official Personnel Portal</span>
+      </div>
+    </div>
+
+    <div class="rounded-3xl bg-white/55 backdrop-blur-2xl border border-white/50 shadow-[0_20px_60px_rgba(15,23,42,0.10)] p-6 md:p-10">
+      <div class="text-center mb-10">
+          <h1 class="text-2xl md:text-3xl font-black tracking-tight text-slate-900">Personnel Registration</h1>
+          <p class="text-slate-600 mt-1">Join the NASA Space Apps BD team as a Judge or Volunteer.</p>
+      </div>
+
+      <form method="post" action="/portal-register" class="space-y-6">
+
+        <div class="animate__animated animate__fadeIn">
+          <label class="block text-xs font-black tracking-widest uppercase text-slate-600 mb-3 text-center">
+            Select Your Role <span class="text-red-500">*</span>
+          </label>
+          <div class="grid grid-cols-2 gap-4 max-w-md mx-auto">
+            <label class="relative cursor-pointer group">
+                <input type="radio" name="type" value="judge" class="peer sr-only" required checked>
+                <div class="p-4 text-center rounded-2xl border border-black/10 bg-white/40 backdrop-blur transition-all peer-checked:bg-slate-900 peer-checked:text-white peer-checked:border-slate-900 group-hover:border-blue-400">
+                    <i class="fa-solid fa-gavel mb-2 block"></i>
+                    <span class="text-xs font-bold uppercase tracking-widest">Judge</span>
+                </div>
+            </label>
+            <label class="relative cursor-pointer group">
+                <input type="radio" name="type" value="volunteer" class="peer sr-only">
+                <div class="p-4 text-center rounded-2xl border border-black/10 bg-white/40 backdrop-blur transition-all peer-checked:bg-slate-900 peer-checked:text-white peer-checked:border-slate-900 group-hover:border-blue-400">
+                    <i class="fa-solid fa-hands-helping mb-2 block"></i>
+                    <span class="text-xs font-bold uppercase tracking-widest">Volunteer</span>
+                </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div>
+            <label class="block text-xs font-black tracking-widest uppercase text-slate-600">
+              Full Name <span class="text-red-500">*</span>
+            </label>
+            <input name="name" required
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white/60 backdrop-blur px-4 py-3 outline-none text-slate-900 placeholder-slate-400 shadow-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition"
+              placeholder="Your professional name" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-black tracking-widest uppercase text-slate-600">
+              Designation <span class="text-red-500">*</span>
+            </label>
+            <input name="designation" required
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white/60 backdrop-blur px-4 py-3 outline-none text-slate-900 placeholder-slate-400 shadow-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition"
+              placeholder="e.g., Senior Software Engineer" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-black tracking-widest uppercase text-slate-600">
+            Organization / Institution <span class="text-red-500">*</span>
+          </label>
+          <input name="organization" required
+            class="mt-2 w-full rounded-2xl border border-black/10 bg-white/60 backdrop-blur px-4 py-3 outline-none text-slate-900 placeholder-slate-400 shadow-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition"
+            placeholder="e.g., Google / BASIS / University Name" />
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div>
+            <label class="block text-xs font-black tracking-widest uppercase text-slate-600">
+              Phone Number <span class="text-red-500">*</span>
+            </label>
+            <input name="phone" type="tel" required
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white/60 backdrop-blur px-4 py-3 outline-none text-slate-900 placeholder-slate-400 shadow-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition"
+              placeholder="+8801XXXXXXXXX" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-black tracking-widest uppercase text-slate-600">
+              Email Address <span class="text-red-500">*</span>
+            </label>
+            <input name="email" type="email" required
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white/60 backdrop-blur px-4 py-3 outline-none text-slate-900 placeholder-slate-400 shadow-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition"
+              placeholder="name@organization.com" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-black tracking-widest uppercase text-slate-600">
+              Secure Password <span class="text-red-500">*</span>
+            </label>
+            <input name="password" type="password" required minlength="6"
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white/60 backdrop-blur px-4 py-3 outline-none text-slate-900 placeholder-slate-400 shadow-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition"
+              placeholder="Min. 6 characters" />
+          </div>
+        </div>
+
+        <div class="flex items-center justify-center gap-3 py-2">
+            <input name="accepted" type="checkbox" required class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500" id="terms"/>
+            <label for="terms" class="text-sm text-slate-700">
+                I agree to the <span class="font-bold border-b border-slate-400 cursor-pointer">Official Code of Conduct</span> for Personnel. <span class="text-red-500">*</span>
+            </label>
+        </div>
+
+        <button type="submit"
+          class="w-full rounded-2xl bg-slate-900 text-white py-4 font-black tracking-widest uppercase text-xs
+                 shadow-lg shadow-slate-900/10 hover:bg-indigo-600 hover:shadow-indigo-500/20
+                 active:scale-[0.98] transition-all duration-300">
+          Complete Registration
+        </button>
+
+        <p class="text-sm text-slate-600 text-center">
+          Already have an account?
+          <a href="/portal-login" class="text-slate-900 font-bold hover:text-blue-600 transition-colors">Click here</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

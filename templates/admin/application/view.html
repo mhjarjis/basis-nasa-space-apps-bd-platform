@@ -1,0 +1,125 @@
+<div class="max-w-7xl mx-auto px-6 py-10">
+
+  <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
+    <div class="animate__animated animate__fadeIn">
+      <a href="/admin/applications" class="text-blue-600 font-bold text-xs uppercase tracking-widest flex items-center mb-3">
+        <i class="fa-solid fa-chevron-left mr-2"></i> Back to Applications
+      </a>
+
+      <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight">{{ team_name }}</h1>
+    </div>
+
+    <div class="flex items-center space-x-3 animate__animated animate__fadeIn">
+
+      <form method="post" action="/admin/applications/status" class="{{ reject_btn_class }}">
+        <input type="hidden" name="id" value="{{ app_id }}">
+        <input type="hidden" name="status" value="rejected">
+        <button class="px-6 py-3 bg-red-500 font-bold text-white rounded-2xl shadow-xl hover:bg-red-600 transition-colors">
+          Reject <i class="fa-solid fa-times-circle ml-3"></i>
+        </button>
+      </form>
+
+      <form method="post" action="/admin/applications/status" class="{{ approve_btn_class }}">
+        <input type="hidden" name="id" value="{{ app_id }}">
+        <input type="hidden" name="status" value="approved">
+        <button class="px-10 py-4 bg-slate-900 text-white font-black rounded-2xl shadow-xl shadow-slate-900/20 hover:bg-blue-600 transition-all flex items-center">
+          Approve <i class="fa-solid fa-circle-check ml-3"></i>
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+
+    <!-- LEFT -->
+    <div class="lg:col-span-4 space-y-8 animate__animated animate__fadeInLeft">
+
+      <div class="data-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+        <h2 class="section-title text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Team Identity</h2>
+
+        <div class="mb-6">
+          <p class="text-lg font-black text-slate-900">{{ leader_name }}</p>
+          <p class="text-xs font-bold text-blue-600 uppercase tracking-tighter">Team Leader</p>
+        </div>
+
+        <div class="space-y-5">
+          <div class="flex items-center space-x-3 text-sm">
+            <i class="fa-solid fa-graduation-cap text-slate-300 w-5"></i>
+            <span class="font-semibold">{{ university }}</span>
+          </div>
+          <div class="flex items-center space-x-3 text-sm">
+            <i class="fa-solid fa-location-dot text-slate-300 w-5"></i>
+            <span class="font-semibold">{{ location }}</span>
+          </div>
+          <div class="flex items-center space-x-3 text-sm">
+            <i class="fa-solid fa-envelope text-slate-300 w-5"></i>
+            <span class="font-semibold">{{ leader_email }}</span>
+          </div>
+          <div class="flex items-center space-x-3 text-sm">
+            <i class="fa-solid fa-phone text-slate-300 w-5"></i>
+            <span class="font-semibold">{{ leader_mobile }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="data-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+        <h2 class="section-title text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Team Members</h2>
+        <div class="space-y-3">
+          {{ roster_html }}
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="lg:col-span-8 space-y-10 animate__animated animate__fadeInUp">
+
+      <div class="data-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm relative overflow-hidden">
+        <div class="flex justify-between items-start mb-10">
+          <div>
+            <h2 class="section-title text-xs font-black uppercase tracking-[0.2em] text-slate-400">Mission Overview</h2>
+            <h3 class="text-3xl font-black text-slate-900 mt-2">{{ project_title }}</h3>
+          </div>
+          <span class="bg-blue-50 text-blue-600 px-4 py-2 rounded-xl text-[10px] font-black uppercase border border-blue-100">
+            Category: {{ project_category }}
+          </span>
+        </div>
+
+        <p class="text-slate-600 text-lg leading-relaxed mb-8">
+          {{ project_description }}
+        </p>
+
+        <div class="grid grid-cols-2 gap-4 pt-6 border-t border-slate-50">
+          <a href="{{ github_link }}" target="_blank"
+             class="p-4 bg-slate-900 rounded-2xl flex items-center justify-center space-x-3 hover:bg-blue-600 transition-all text-white">
+            <i class="fa-brands fa-github text-xl"></i>
+            <span class="text-xs font-black uppercase">Source Code</span>
+          </a>
+
+          <a href="{{ video_link }}" target="_blank"
+             class="p-4 bg-red-50 rounded-2xl flex items-center justify-center space-x-3 hover:bg-red-100 transition-all text-red-600">
+            <i class="fa-brands fa-youtube text-xl"></i>
+            <span class="text-xs font-black uppercase">Watch Video</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="data-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+          <h2 class="section-title text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-4">Data Sources Used</h2>
+          <div class="text-sm font-semibold text-slate-700 break-words">
+            <a href="{{ video_link }}" target="_blank">{{ data_sources }}</a>
+          </div>
+        </div>
+
+        <div class="data-card bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+          <h2 class="section-title text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-4">Global Profile</h2>
+          <a href="{{ team_url }}" target="_blank" class="text-sm font-bold text-blue-600 hover:underline flex items-center">
+            <i class="fa-solid fa-earth-americas mr-2 text-slate-300"></i> NASA Global Profile Link
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

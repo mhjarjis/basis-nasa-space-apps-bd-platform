@@ -1,0 +1,140 @@
+<div class="min-h-screen flex items-center justify-center px-4 py-10 relative overflow-hidden">
+
+  <!-- Soft background blobs -->
+  <div class="absolute -top-24 -left-24 w-[380px] h-[380px] bg-blue-300/30 rounded-full blur-3xl"></div>
+  <div class="absolute -bottom-24 -right-24 w-[420px] h-[420px] bg-indigo-300/30 rounded-full blur-3xl"></div>
+
+  <div class="w-full max-w-4xl relative">
+    <!-- Top badge -->
+    <div class="flex justify-center mb-6">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-xl border border-white/40 shadow-sm">
+        <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+        <span class="text-xs font-bold tracking-widest uppercase text-slate-700">NASA Space Apps BD</span>
+      </div>
+    </div>
+
+    <!-- Glass card -->
+    <div class="rounded-3xl bg-white/55 backdrop-blur-2xl border border-white/50 shadow-[0_20px_60px_rgba(15,23,42,0.10)] p-6 md:p-10">
+      <!-- Header -->
+      <div class="flex justify-center gap-6">
+        <div>
+          <h1 class="text-2xl md:text-3xl font-black tracking-tight text-slate-900">Participant Registration</h1>
+          <p class="text-slate-600 mt-1">Create your team account and submit your basic information.</p>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <!-- <div class="mt-5 {{ error_box_class }}">
+        <div class="rounded-2xl border border-red-200 bg-red-50/60 backdrop-blur px-4 py-3 text-sm text-red-700 ">
+          <div class="flex items-start gap-2">
+            <span class="mt-0.5 inline-block w-2.5 h-2.5 rounded-full bg-red-500"></span>
+            <div>
+              <div class="font-bold">Please fix the following</div>
+              <div class="mt-0.5">{{ error }}</div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Form -->
+      <form method="post" action="/register" class="mt-6 space-y-6">
+
+        <div>
+          <label class="block text-xs font-black tracking-widest uppercase text-slate-600">
+            What is the name of your team? <span class="text-red-500">*</span>
+          </label>
+          <div class="mt-2 relative">
+            <input name="team_name" required value=""
+              class="w-full rounded-2xl border border-black/10  backdrop-blur px-4 py-3 outline-none
+                     text-slate-900 placeholder-slate-400 shadow-sm
+                     focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition"
+              placeholder="e.g., Team Phoenix" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div>
+            <label class="block text-xs font-black tracking-widest uppercase text-slate-600">
+              Team leader Name <span class="text-red-500">*</span>
+            </label>
+            <input name="leader_name" required value=""
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white/60 backdrop-blur px-4 py-3 outline-none
+                     text-slate-900 placeholder-slate-400 shadow-sm
+                     focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition"
+              placeholder="Full name" />
+          </div>          
+          <div>
+            <label class="block text-xs font-black tracking-widest uppercase text-slate-600">
+              Location <span class="text-red-500">*</span>
+            </label>
+            <input name="location" required value=""
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white/60 backdrop-blur px-4 py-3 outline-none
+                     text-slate-900 placeholder-slate-400 shadow-sm
+                     focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition"
+              placeholder="e.g., Dhaka" />
+          </div>
+
+          <div>
+            <label class="block text-xs font-black tracking-widest uppercase text-slate-600">
+              University <span class="text-red-500">*</span>
+            </label>
+            <input name="university" required value=""
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white/60 backdrop-blur px-4 py-3 outline-none
+                     text-slate-900 placeholder-slate-400 shadow-sm
+                     focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition"
+              placeholder="e.g., DIU" />
+          </div>          
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div>
+            <label class="block text-xs font-black tracking-widest uppercase text-slate-600">
+              Team leader Mobile <span class="text-red-500">*</span>
+            </label>
+            <input name="leader_mobile" required value=""
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white/60 backdrop-blur px-4 py-3 outline-none
+                     text-slate-900 placeholder-slate-400 shadow-sm
+                     focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition"
+              placeholder="+8801XXXXXXXXX" />
+          </div>
+          <div>
+            <label class="block text-xs font-black tracking-widest uppercase text-slate-600">
+              Team leader Email <span class="text-red-500">*</span><small>(login email)</small>
+            </label>
+            <input name="email" type="email" required value=""
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white/60 backdrop-blur px-4 py-3 outline-none
+                    text-slate-900 placeholder-slate-400 shadow-sm
+                    focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition"
+              placeholder="leader@example.com" />
+          </div>
+          <div>
+            <label class="block text-xs font-black tracking-widest uppercase text-slate-600">
+              Password <span class="text-red-500">*</span>
+            </label>
+            <input name="password" type="password" required minlength="6"
+              class="mt-2 w-full rounded-2xl border border-black/10 bg-white/60 backdrop-blur px-4 py-3 outline-none
+                    text-slate-900 placeholder-slate-400 shadow-sm
+                    focus:ring-4 focus:ring-blue-500/10 focus:border-blue-600 transition"
+              placeholder="Minimum 6 characters" />
+            <p class="mt-2 text-xs text-slate-500">Use at least 6 characters.</p>
+          </div>          
+        </div>
+        <div class="text-sm text-slate-600 text-center justify-center">
+          <input name="accepted" value="1" type="checkbox" required />
+         <label class="text-slate-800">I hereby confirm that I have read, understood, and accepted the Terms and Conditions .</label>  <span class="text-red-500">*</span>
+        </div>
+        <button type="submit"
+          class="w-full rounded-2xl bg-slate-900 text-white py-3.5 font-black tracking-wide
+                 shadow-lg shadow-slate-900/10 hover:bg-blue-600 hover:shadow-blue-500/20
+                 active:scale-[0.99] transition">
+          Create Account
+        </button>
+
+        <p class="text-sm text-slate-600 text-center">
+          Already have an account?
+          <a href="/login" class="text-slate-900 font-bold hover:text-blue-600 hover:underline underline-offset-4">Login</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
