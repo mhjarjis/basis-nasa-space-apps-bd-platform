@@ -1,0 +1,7 @@
+body { font-family: Arial, sans-serif; margin: 0; }
+.topbar { background: #111; padding: 10px; }
+.topbar a { color: #fff; margin-right: 12px; text-decoration: none; }
+.container { padding: 18px; }
+.error { color: #c00; }
+input, select { padding: 8px; width: 320px; max-width: 90%; }
+button { padding: 10px 16px; }

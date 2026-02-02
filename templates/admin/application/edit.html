@@ -1,0 +1,276 @@
+<div class="max-w-6xl mx-auto">
+
+  <div class="flex items-start justify-between gap-6 mb-8">
+    <div>
+      <a href="/admin/applications" class="text-blue-600 font-bold text-xs uppercase tracking-widest flex items-center mb-3">
+        <i class="fa-solid fa-chevron-left mr-2"></i> Back to Applications
+      </a>
+      <h1 class="text-3xl font-black text-slate-900">Edit Application</h1>
+      <p class="text-slate-500 font-medium">Update team info, status, and project details.</p>
+    </div>
+
+    <a href="/admin/applications/view?id={{ app_id }}"
+       class="px-6 py-3 rounded-2xl bg-slate-900 text-white font-black text-xs uppercase tracking-widest hover:bg-blue-600">
+      View Page
+    </a>
+  </div>
+
+  <!-- Error -->
+  <div class="mb-6 {{ error_box_class }}">
+    <div class="rounded-2xl border border-red-200 bg-red-50/60 px-4 py-3 text-sm text-red-700">
+      <div class="font-black mb-1">Please fix the following</div>
+      <div>{{ error }}</div>
+    </div>
+  </div>
+
+  <form method="post" action="/admin/applications/edit?id={{ app_id }}" class="space-y-8">
+
+    <!-- Application -->
+    <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm">
+      <h2 class="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Application Info</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="text-xs font-black uppercase tracking-widest text-slate-500">Team Name *</label>
+          <input name="team_name" value="{{ team_name }}" required
+                 class="mt-2 w-full bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500">
+        </div>
+
+        <div>
+          <label class="text-xs font-black uppercase tracking-widest text-slate-500">Status *</label>
+          <select name="status"
+                  class="mt-2 w-full bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500">
+            <option value="pending" {{ status_pending_selected }}>Pending</option>
+            <option value="approved" {{ status_approved_selected }}>Approved</option>
+            <option value="rejected" {{ status_rejected_selected }}>Rejected</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="text-xs font-black uppercase tracking-widest text-slate-500">Location *</label>
+          <input name="location" value="{{ location }}" required
+                 class="mt-2 w-full bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500">
+        </div>
+
+        <div>
+          <label class="text-xs font-black uppercase tracking-widest text-slate-500">University *</label>
+          <input name="university" value="{{ university }}" required
+                 class="mt-2 w-full bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500">
+        </div>
+
+        <div>
+          <label class="text-xs font-black uppercase tracking-widest text-slate-500">Leader Name *</label>
+          <input name="leader_name" value="{{ leader_name }}" required
+                 class="mt-2 w-full bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500">
+        </div>
+
+        <div>
+          <label class="text-xs font-black uppercase tracking-widest text-slate-500">Leader Mobile *</label>
+          <input name="leader_mobile" value="{{ leader_mobile }}" required
+                 class="mt-2 w-full bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500">
+        </div>
+
+        <div class="md:col-span-2">
+          <label class="text-xs font-black uppercase tracking-widest text-slate-500">Leader Email *</label>
+          <input name="leader_email" value="{{ leader_email }}" type="email" required
+                 class="mt-2 w-full bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500">
+        </div>
+      </div>
+    </div>
+
+    <!-- Project -->
+    <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm">
+      <h2 class="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Project Info</h2>
+
+      <div class="space-y-6">
+        <div>
+          <label class="text-xs font-black uppercase tracking-widest text-slate-500">Project Title</label>
+          <input name="project_title" value="{{ project_title }}"
+                 class="mt-2 w-full bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500">
+        </div>
+
+        <div>
+          <label class="text-xs font-black uppercase tracking-widest text-slate-500">Description</label>
+          <textarea name="project_description" rows="5"
+                    class="mt-2 w-full bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500">{{ project_description }}</textarea>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="text-xs font-black uppercase tracking-widest text-slate-500">Category</label>
+            <input name="category" value="{{ category }}"
+                   class="mt-2 w-full bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500">
+          </div>
+
+          <div>
+            <label class="text-xs font-black uppercase tracking-widest text-slate-500">Team URL</label>
+            <input name="team_url" value="{{ team_url }}"
+                   class="mt-2 w-full bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500">
+          </div>
+
+          <div>
+            <label class="text-xs font-black uppercase tracking-widest text-slate-500">Video Link</label>
+            <input name="video_link" value="{{ video_link }}"
+                   class="mt-2 w-full bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500">
+          </div>
+
+          <div>
+            <label class="text-xs font-black uppercase tracking-widest text-slate-500">GitHub Link</label>
+            <input name="github_link" value="{{ github_link }}"
+                   class="mt-2 w-full bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500">
+          </div>
+
+          <div class="md:col-span-2">
+            <label class="text-xs font-black uppercase tracking-widest text-slate-500">Data Sources</label>
+            <input name="data_sources" value="{{ data_sources }}"
+                   class="mt-2 w-full bg-slate-50 border border-slate-100 rounded-2xl px-4 py-3 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEAM MEMBERS (Vanilla JS) -->
+    <div class="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-sm font-black uppercase tracking-widest text-slate-800">
+        Add Team Members
+        </h2>
+
+        <button type="button" id="addMemberBtn"
+        class="px-4 py-2 rounded-xl bg-blue-50 text-blue-600 font-bold text-xs
+                hover:bg-blue-600 hover:text-white transition-all">
+        + Add Member
+        </button>
+    </div>
+
+    <div id="membersContainer" class="space-y-6"></div>
+
+    <div id="emptyMembers"
+        class="text-center py-10 text-sm text-slate-400 border-2 border-dashed border-slate-200 rounded-2xl hidden">
+        No team members added yet.
+    </div>
+
+    <!-- IMPORTANT: backend reads this -->
+    <input type="hidden" name="members_json" id="membersJson" value="{{ members_json }}">
+    </div>
+
+
+
+    <div class="flex justify-end">
+      <button type="submit"
+              class="px-10 py-4 bg-slate-900 text-white font-black rounded-2xl shadow-xl shadow-slate-900/20 hover:bg-blue-600 transition-all">
+        Save Changes
+      </button>
+    </div>
+
+  </form>
+</div>
+<script>
+(function () {
+  const container = document.getElementById("membersContainer");
+  const addBtn = document.getElementById("addMemberBtn");
+  const jsonInput = document.getElementById("membersJson");
+  const emptyBox = document.getElementById("emptyMembers");
+
+  // Parse initial JSON from backend safely
+  let members = [];
+  try {
+    members = JSON.parse(jsonInput.value || "[]");
+    if (!Array.isArray(members)) members = [];
+  } catch (e) {
+    members = [];
+  }
+
+  function syncHidden() {
+    jsonInput.value = JSON.stringify(members);
+  }
+
+  function showEmptyIfNeeded() {
+    emptyBox.classList.toggle("hidden", members.length !== 0);
+  }
+
+  function memberCard(m, index) {
+    const card = document.createElement("div");
+    card.className = "border-2 border-dashed border-slate-200 rounded-2xl p-6";
+
+    card.innerHTML = `
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input type="text" data-field="name" placeholder="Member Name"
+          class="w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500"
+          value="${escapeHtml(m.name || "")}">
+        <input type="email" data-field="email" placeholder="Email Address"
+          class="w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500"
+          value="${escapeHtml(m.email || "")}">
+        <input type="text" data-field="phone" placeholder="Phone"
+          class="w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500"
+          value="${escapeHtml(m.phone || "")}">
+        <select data-field="gender"
+          class="w-full rounded-xl border border-slate-200 px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500/10 focus:border-blue-500 text-slate-700">
+          <option value="" ${!m.gender ? "selected" : ""}>Gender</option>
+          <option value="male" ${m.gender === "male" ? "selected" : ""}>Male</option>
+          <option value="female" ${m.gender === "female" ? "selected" : ""}>Female</option>
+          <option value="other" ${m.gender === "other" ? "selected" : ""}>Other</option>
+        </select>
+      </div>
+
+      <div class="flex justify-end mt-4">
+        <button type="button" data-action="remove"
+          class="flex items-center gap-2 text-red-500 text-xs font-bold hover:text-red-600 hover:underline">
+          <span style="font-size:14px;">🗑️</span> Remove
+        </button>
+      </div>
+    `;
+
+    // Update model on input
+    card.querySelectorAll("[data-field]").forEach(el => {
+      el.addEventListener("input", (e) => {
+        const field = el.getAttribute("data-field");
+        members[index][field] = el.value;
+        syncHidden();
+      });
+      el.addEventListener("change", (e) => {
+        const field = el.getAttribute("data-field");
+        members[index][field] = el.value;
+        syncHidden();
+      });
+    });
+
+    // Remove
+    card.querySelector('[data-action="remove"]').addEventListener("click", () => {
+      members.splice(index, 1);
+      render();
+    });
+
+    return card;
+  }
+
+  function render() {
+    container.innerHTML = "";
+    members.forEach((m, i) => {
+      container.appendChild(memberCard(m, i));
+    });
+    syncHidden();
+    showEmptyIfNeeded();
+  }
+
+  addBtn.addEventListener("click", () => {
+    members.push({ name: "", email: "", phone: "", gender: "" });
+    render();
+  });
+
+  // Basic HTML escape for safe rendering
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  // Initial render
+  render();
+})();
+</script>
+

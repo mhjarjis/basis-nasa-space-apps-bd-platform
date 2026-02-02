@@ -1,0 +1,31 @@
+<div class="bg-white rounded-[2.5rem] p-8 border border-slate-100 shadow-sm">
+
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <h3 class="text-xl font-black text-slate-900">Rooms</h3>
+      <p class="text-slate-400 text-sm">Create rooms and assign judges, volunteers, and teams.</p>
+    </div>
+
+    <a href="/admin/rooms/create"
+       class="bg-slate-900 hover:bg-blue-600 text-white px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-slate-900/10 transition-all">
+      + Create Room
+    </a>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="w-full">
+      <thead>
+        <tr class="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] border-b border-slate-50">
+          <th class="text-left pb-5 pl-4">Room Name</th>
+          <th class="text-left pb-5">Judges</th>
+          <th class="text-left pb-5">Volunteers</th>
+          <th class="text-left pb-5">Teams</th>
+          <th class="text-right pb-5 pr-4">Action</th>
+        </tr>
+      </thead>
+      <tbody class="text-sm">
+        {{ rows }}
+      </tbody>
+    </table>
+  </div>
+</div>

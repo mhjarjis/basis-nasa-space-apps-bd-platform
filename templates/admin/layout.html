@@ -1,0 +1,80 @@
+<div class="flex min-h-screen bg-slate-50 text-slate-800 font-sans">
+
+  <!-- Sidebar -->
+  <aside class="w-72 bg-white border-r border-slate-200 flex flex-col fixed h-full z-50">
+    <div class="p-8">
+      <div class="items-center space-x-3 mb-10">
+        <div class="p-2 rounded-lg">
+          <img class="rounded-lg" src="https://nsac.basis.org.bd/uploads/images/logo.png" >
+        </div>
+        <div class="text-center">
+          <span class="font-black text-xl tracking-tighter uppercase text-slate-900">
+            Admin<span class="text-blue-600">Panel</span>
+          </span>
+        </div>
+      </div>
+
+      <nav class="space-y-2">
+        <a href="/admin/dashboard"
+           class="sidebar-link {{ nav_dashboard_active }} flex items-center space-x-3 px-4 py-3.5 rounded-xl font-bold text-sm transition-all">
+          <i class="fa-solid fa-chart-pie w-5"></i>
+          <span>Dashboard Summary</span>
+        </a>
+
+        <a href="/admin/applications"
+           class="sidebar-link {{ nav_applications_active }} flex items-center space-x-3 px-4 py-3.5 rounded-xl font-bold text-sm transition-all {{ nav_inactive }}">
+          <i class="fa-solid fa-folder-open w-5"></i>
+          <span>All Applications</span>
+        </a>
+
+        <a href="/admin/rooms"
+           class="sidebar-link {{ nav_rooms_active }} flex items-center space-x-3 px-4 py-3.5 rounded-xl font-bold text-sm transition-all {{ nav_inactive }}">
+          <i class="fa-solid fa-map-location-dot w-5"></i>
+          <span>Location / Room</span>
+        </a>
+
+        <a href="/admin/judges-volunteers"
+           class="sidebar-link {{ nav_jv_active }} flex items-center space-x-3 px-4 py-3.5 rounded-xl font-bold text-sm transition-all {{ nav_inactive }}">
+          <i class="fa-solid fa-users-gear w-5"></i>
+          <span>Judge & Volunteer</span>
+        </a>
+
+        <a href="/admin/results"
+           class="sidebar-link {{ nav_results_active }} flex items-center space-x-3 px-4 py-3.5 rounded-xl font-bold text-sm transition-all {{ nav_inactive }}">
+          <i class="fa fa-certificate w-5"></i>
+          <span>Result Evaluation</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="mt-auto p-8 border-t border-slate-100">
+      <div class="flex items-center space-x-3 p-3 bg-slate-50 rounded-2xl">
+        <img src="{{ admin_avatar_url }}" class="w-10 h-10 rounded-xl" alt="Admin">
+        <div>
+          <p class="text-xs font-black text-slate-900">{{ admin_name }}</p>
+          <p class="text-[10px] text-slate-400 font-bold uppercase">{{ admin_role_label }}</p>
+        </div>
+        <a class="px-2 py-2 rounded-xl text-xs font-bold hover:bg-red-600 hover:text-white" href="/logout">
+            <i class="fa fa-sign-out"></i>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="flex-1 ml-72">
+    <header class="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200 flex items-center justify-between px-10 sticky top-0 z-40">
+      <h2 class="font-black text-slate-800 uppercase tracking-widest text-sm">{{ page_title }}</h2>
+
+      <div class="flex items-center space-x-6">
+        <a class="bg-slate-500 text-white px-5 py-2 rounded-xl text-xs font-bold hover:bg-red-600 transition-all shadow-lg shadow-slate-900/10"
+                href="/logout">
+          LogOut <i class="fa fa-sign-out ps-2"></i>
+        </a>
+      </div>
+    </header>
+    <div class="p-5">
+        {{ content }}
+    </div>
+  </main>
+</div>

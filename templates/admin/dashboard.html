@@ -1,0 +1,71 @@
+<!-- KPI cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+
+  <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
+    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-4 text-xl">
+      <i class="fa-solid fa-file-signature"></i>
+    </div>
+    <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Total Teams</p>
+    <h3 class="text-3xl font-black text-slate-900 mt-1">{{ kpi_total_teams }}</h3>
+    <p class="text-green-500 text-[10px] font-bold mt-2">
+      <i class="fa-solid fa-arrow-up mr-1"></i> {{ kpi_total_teams_note }}
+    </p>
+  </div>
+
+  <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+    <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center mb-4 text-xl">
+      <i class="fa-solid fa-building-circle-check"></i>
+    </div>
+    <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Rooms Occupied</p>
+    <h3 class="text-3xl font-black text-slate-900 mt-1">{{ kpi_rooms }}</h3>
+    <div class="w-full bg-slate-100 h-1.5 rounded-full mt-4">
+      <div class="bg-purple-500 h-1.5 rounded-full" style="width: {{ kpi_rooms_percent }}%"></div>
+    </div>
+  </div>
+
+  <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+    <div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center mb-4 text-xl">
+      <i class="fa-solid fa-user-tie"></i>
+    </div>
+    <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Active Judges</p>
+    <h3 class="text-3xl font-black text-slate-900 mt-1">{{ kpi_active_judges }}</h3>
+    <p class="text-slate-400 text-[10px] font-bold mt-2">{{ kpi_active_judges_note }}</p>
+  </div>
+
+  <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+    <div class="w-12 h-12 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center mb-4 text-xl">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+    <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Submissions</p>
+    <h3 class="text-3xl font-black text-slate-900 mt-1">{{ kpi_submissions }}</h3>
+    <p class="text-slate-400 text-[10px] font-bold mt-2">{{ kpi_submissions_note }}</p>
+  </div>
+</div>
+
+<!-- Recent Applications -->
+<div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm p-8 animate__animated animate__fadeInUp" style="animation-delay: 0.5s;">
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <h3 class="text-xl font-black text-slate-900">Recent Applications</h3>
+      <p class="text-slate-400 text-sm">Review the latest team signups</p>
+    </div>
+    <a href="/admin/applications" class="text-blue-600 font-bold text-sm hover:underline">View All</a>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="w-full text-left">
+      <thead>
+        <tr class="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] border-b border-slate-50">
+          <th class="pb-4">Team Name</th>
+          <th class="pb-4">Location</th>
+          <th class="pb-4">Leader</th>
+          <th class="pb-4">Status</th>
+        </tr>
+      </thead>
+
+      <tbody class="text-sm font-medium">
+        {{ recent_rows }}
+      </tbody>
+    </table>
+  </div>
+</div>
