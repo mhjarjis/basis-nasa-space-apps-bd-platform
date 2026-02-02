@@ -24,8 +24,8 @@ A web-based competition management system built with Python and MySQL, designed 
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/nsac-competition-system.git
-   cd nsac-competition-system
+   git clone https://github.com/basis-git/basis-nasa-space-apps-bd-platform.git
+   cd basis-nasa-space-apps-bd-platform
    ```
 
 2. **Create a virtual environment:**
