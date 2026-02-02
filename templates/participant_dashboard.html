@@ -1,0 +1,258 @@
+<body class="bg-slate-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-500 font-sans"
+      x-data="dashboardData()">
+
+  <nav class="sticky top-0 z-50 bg-white/80 dark:bg-gray-800/80 backdrop-blur border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex justify-between items-center">
+    <div class="flex items-center space-x-3">
+      <i class="fa-solid fa-user-astronaut text-2xl text-blue-600"></i>
+      <span class="font-black text-xl tracking-tighter uppercase">NASA Dashboard</span>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <a href="/logout" class="text-sm font-bold px-4 py-2 rounded-xl bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600">
+        Logout
+      </a>
+    </div>
+  </nav>
+
+  <div class="max-w-6xl mx-auto py-8 px-4 grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+    <aside class="lg:col-span-1 space-y-2">
+      <button @click="tab = 'team'"
+              :class="tab === 'team' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' : 'bg-white dark:bg-gray-800 text-gray-500 hover:bg-blue-50 dark:hover:bg-gray-700'"
+              class="w-full flex items-center space-x-3 px-6 py-4 rounded-2xl transition-all duration-200">
+        <i class="fa-solid fa-users"></i> <span class="font-bold">Team Management</span>
+      </button>
+
+      <button @click="tab = 'project'"
+              :class="tab === 'project' ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/30' : 'bg-white dark:bg-gray-800 text-gray-500 hover:bg-blue-50 dark:hover:bg-gray-700'"
+              class="w-full flex items-center space-x-3 px-6 py-4 rounded-2xl transition-all duration-200">
+        <i class="fa-solid fa-rocket"></i> <span class="font-bold">Project Submission</span>
+      </button>
+    </aside>
+
+    <main class="lg:col-span-3">
+
+      <!-- TEAM TAB -->
+      <section x-show="tab === 'team'" x-transition class="animate__animated animate__fadeIn space-y-6">
+
+        <!-- Leader info -->
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-black uppercase tracking-wide">
+              Team Leader Info <span class="text-xs lowercase text-blue-500 font-normal">(Read Only)</span>
+            </h2>
+            <i class="fa-solid fa-lock text-gray-400"></i>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Leader Name</label>
+              <div class="p-3 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-700 text-gray-600 dark:text-gray-300">
+                {{ leader_name }}
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Leader Email</label>
+              <div class="p-3 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-700 text-gray-600 dark:text-gray-300">
+                {{ leader_email }}
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            <div>
+              <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Team Name</label>
+              <div class="p-3 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-700 text-gray-600 dark:text-gray-300">
+                {{ team_name }}
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-gray-400 uppercase mb-1">University</label>
+              <div class="p-3 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-700 text-gray-600 dark:text-gray-300">
+                {{ university }}
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <label class="block text-xs font-bold text-gray-400 uppercase mb-1">Location</label>
+            <div class="p-3 bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-100 dark:border-gray-700 text-gray-600 dark:text-gray-300">
+              {{ location }}
+            </div>
+          </div>
+
+          <div class="mt-5 text-sm">
+            <span class="font-bold">Application Status:</span>
+            <span class="px-3 py-1 rounded-full text-xs font-black uppercase"
+                  :class="statusBadgeClass('{{ application_status }}')">
+              {{ application_status }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Members -->
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-black uppercase tracking-wide">Add Team Members</h2>
+            <button type="button"
+                    @click="addMember()"
+                    class="bg-blue-100 dark:bg-blue-900/30 text-blue-600 px-4 py-2 rounded-xl text-sm font-bold hover:bg-blue-600 hover:text-white transition-all">
+              + Add Member
+            </button>
+          </div>
+
+          <form method="post" action="/participant/team-members" class="space-y-4">
+            <input type="hidden" name="members_json" x-model="membersJson" />
+
+            <div class="space-y-4">
+              <template x-for="(member, index) in members" :key="index">
+                <div class="p-6 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-dashed border-gray-300 dark:border-gray-600 grid grid-cols-1 md:grid-cols-2 gap-4 animate__animated animate__fadeInDown">
+                  <input x-model="member.name" type="text" placeholder="Member Name"
+                         class="bg-white dark:bg-gray-800 p-3 rounded-xl border dark:border-gray-700 outline-none focus:ring-2 focus:ring-blue-500" required>
+
+                  <input x-model="member.email" type="email" placeholder="Email"
+                         class="bg-white dark:bg-gray-800 p-3 rounded-xl border dark:border-gray-700 outline-none focus:ring-2 focus:ring-blue-500" required>
+
+                  <input x-model="member.phone" type="tel" placeholder="Phone"
+                         class="bg-white dark:bg-gray-800 p-3 rounded-xl border dark:border-gray-700 outline-none focus:ring-2 focus:ring-blue-500" required>
+
+                  <select x-model="member.gender"
+                          class="bg-white dark:bg-gray-800 p-3 rounded-xl border dark:border-gray-700 outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+
+                  <div class="md:col-span-2 flex justify-end">
+                    <button type="button" @click="removeMember(index)" class="text-red-500 text-sm font-bold">
+                      <i class="fa-solid fa-trash mr-1"></i> Remove
+                    </button>
+                  </div>
+                </div>
+              </template>
+
+              <template x-if="members.length === 0">
+                <div class="text-center py-10 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-3xl text-gray-400">
+                  No members added yet. Click "+ Add Member" to begin.
+                </div>
+              </template>
+            </div>
+
+            <button type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-4 rounded-2xl shadow-xl shadow-blue-500/30 transition-all active:scale-[0.98]">
+              SAVE TEAM MEMBERS
+            </button>
+
+            <p class="text-sm text-green-600 font-bold">{{ success_msg }}</p>
+            <p class="text-sm text-red-600 font-bold">{{ error_msg }}</p>
+          </form>
+        </div>
+      </section>
+
+      <!-- PROJECT TAB -->
+      <section x-show="tab === 'project'" x-transition class="animate__animated animate__fadeIn">
+        <div class="bg-white dark:bg-gray-800 p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700">
+          <h2 class="text-2xl font-black uppercase tracking-wide mb-8">Hackathon Submission Form</h2>
+
+          <form method="post" action="/participant/project" class="space-y-6">
+
+            <div>
+              <label class="block text-sm font-bold mb-2">Project Name *</label>
+              <input name="project_name" value="{{ project_name }}" required type="text"
+                     placeholder="Name of your project"
+                     class="w-full bg-gray-50 dark:bg-gray-900 p-4 rounded-xl border dark:border-gray-700 outline-none focus:ring-4 focus:ring-blue-500/10">
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold mb-2">NASA Space Apps Challenge Category (2025) *</label>
+              <select name="category" required
+                      class="w-full bg-gray-50 dark:bg-gray-900 p-4 rounded-xl border dark:border-gray-700 outline-none focus:ring-4 focus:ring-blue-500/10">
+                {{ category_options }}
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold mb-2">Team URL (Global NASA Website) *</label>
+              <input name="team_url" value="{{ team_url }}" required type="url"
+                     placeholder="https://www.spaceappschallenge.org/..."
+                     class="w-full bg-gray-50 dark:bg-gray-900 p-4 rounded-xl border dark:border-gray-700 outline-none focus:ring-4 focus:ring-blue-500/10">
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold mb-2">Project Description *</label>
+              <textarea name="description" rows="4" required
+                        placeholder="Describe your solution..."
+                        class="w-full bg-gray-50 dark:bg-gray-900 p-4 rounded-xl border dark:border-gray-700 outline-none focus:ring-4 focus:ring-blue-500/10">{{ description }}</textarea>
+            </div>
+
+            <div>
+              <label class="block text-sm font-bold mb-2">NASA Data Source(s) *</label>
+              <input name="data_sources" value="{{ data_sources }}" required type="text"
+                     placeholder="e.g. Landsat 9, MODIS"
+                     class="w-full bg-gray-50 dark:bg-gray-900 p-4 rounded-xl border dark:border-gray-700 outline-none focus:ring-4 focus:ring-blue-500/10">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm font-bold mb-2">Video Link (240s of Glory)</label>
+                <input name="video_link" value="{{ video_link }}" type="url" placeholder="YouTube/Vimeo Link"
+                       class="w-full bg-gray-50 dark:bg-gray-900 p-4 rounded-xl border dark:border-gray-700 outline-none focus:ring-4 focus:ring-blue-500/10">
+              </div>
+              <div>
+                <label class="block text-sm font-bold mb-2">GitHub Repository Link</label>
+                <input name="github_link" value="{{ github_link }}" type="url" placeholder="https://github.com/..."
+                       class="w-full bg-gray-50 dark:bg-gray-900 p-4 rounded-xl border dark:border-gray-700 outline-none focus:ring-4 focus:ring-blue-500/10">
+              </div>
+            </div>
+
+            <button type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-4 rounded-2xl shadow-xl shadow-blue-500/30 transition-all active:scale-[0.98]">
+              SUBMIT PROJECT FOR JUDGING
+            </button>
+
+            <p class="text-sm text-green-600 font-bold">{{ project_success }}</p>
+            <p class="text-sm text-red-600 font-bold">{{ project_error }}</p>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+<script>
+  function dashboardData() {
+    return {
+      tab: '{{ active_tab }}' || 'team',
+      members: {{ members_json }},
+      membersJson: '[]',
+
+      addMember() {
+        this.members.push({ name: '', email: '', phone: '', gender: '' });
+      },
+
+      removeMember(i) {
+        this.members.splice(i, 1);
+      },
+
+      statusBadgeClass(status) {
+        const s = (status || '').toLowerCase();
+        if (s === 'approved') return 'bg-green-100 text-green-700';
+        if (s === 'rejected') return 'bg-red-100 text-red-700';
+        return 'bg-yellow-100 text-yellow-700';
+      },
+
+      init() {
+        // Always keep membersJson updated (deep watch)
+        this.membersJson = JSON.stringify(this.members || []);
+
+        this.$watch('members', () => {
+          this.membersJson = JSON.stringify(this.members || []);
+        }, { deep: true });
+      }
+    }
+  }
+</script>
+
+</body>
+

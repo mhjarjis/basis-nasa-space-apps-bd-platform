@@ -1,0 +1,41 @@
+<div class="max-w-6xl mx-auto space-y-10">
+
+  <div class="flex items-start justify-between gap-6">
+    <div>
+      <a href="/admin/rooms" class="text-blue-600 font-bold text-xs uppercase tracking-widest flex items-center mb-3">
+        <i class="fa-solid fa-chevron-left mr-2"></i> Back to Rooms
+      </a>
+      <h1 class="text-3xl font-black text-slate-900">Assign Teams</h1>
+      <p class="text-slate-500 font-medium">Room: <span class="font-black">{{ room_name }}</span></p>
+    </div>
+  </div>
+
+  <!-- ✅ Assigned Teams (removable) -->
+  <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm">
+    <h2 class="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Assigned Teams</h2>
+    <div class="space-y-3">
+      {{ assigned_rows }}
+    </div>
+  </div>
+
+  <!-- ✅ Add New Teams -->
+  <form method="post" action="/admin/rooms/assign?id={{ room_id }}" class="space-y-6">
+    <div class="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm">
+      <h2 class="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-6">
+        Approved Teams (Not Assigned Yet)
+      </h2>
+
+      <div class="space-y-3">
+        {{ available_rows }}
+      </div>
+    </div>
+
+    <div class="flex justify-end">
+      <button type="submit"
+              class="px-10 py-4 bg-slate-900 text-white font-black rounded-2xl shadow-xl shadow-slate-900/20 hover:bg-blue-600 transition-all">
+        Assign Selected Teams
+      </button>
+    </div>
+  </form>
+
+</div>

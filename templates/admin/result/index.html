@@ -1,0 +1,80 @@
+<div class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100 animate__animated animate__fadeIn">
+
+  <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-8">
+    <div>
+      <h3 class="text-xl font-black text-slate-900">Final Result Evaluation</h3>
+      <p class="text-slate-400 text-sm">Calculate scores in real time, filter results, and export CSV.</p>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-3">
+      <form method="post" action="/admin/results/process"
+            onsubmit="return confirm('Calculate final scores now? This will update participant_applications.final_score.');">
+        <button type="submit"
+          class="bg-green-500 hover:bg-green-700 text-white px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-slate-900/10 transition-all active:scale-95">
+          Process Final Scores
+        </button>
+      </form>
+
+      <a href="/admin/results/export?q={{ q }}&min={{ min }}&max={{ max }}&scored={{ scored }}"
+         class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-blue-500/20 transition-all active:scale-95">
+        Export CSV
+      </a>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <form method="get" class="flex flex-wrap items-center gap-4 mb-10">
+
+    <div class="relative">
+      <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400">
+        <i class="fa-solid fa-magnifying-glass text-xs"></i>
+      </span>
+      <input name="q" value="{{ q }}" placeholder="Search team / leader / university..."
+        class="pl-10 pr-4 py-3 w-72 bg-slate-50 border border-slate-100 rounded-2xl outline-none
+               focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 focus:bg-white transition-all text-sm font-medium">
+    </div>
+
+    <input name="min" value="{{ min }}" placeholder="Min score"
+      class="px-4 py-3 w-36 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 text-sm font-medium">
+
+    <input name="max" value="{{ max }}" placeholder="Max score"
+      class="px-4 py-3 w-36 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 text-sm font-medium">
+
+    <div class="relative">
+      <select name="scored"
+        class="appearance-none pl-4 pr-10 py-3 bg-slate-50 border border-slate-100 rounded-2xl outline-none
+               focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 focus:bg-white transition-all text-sm font-bold text-slate-600 cursor-pointer">
+        <option value="">All</option>
+        <option value="yes" {{ scored_yes_selected }}>Scored</option>
+        <option value="no" {{ scored_no_selected }}>Not Scored</option>
+      </select>
+      <span class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-slate-400">
+        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+      </span>
+    </div>
+
+    <button type="submit"
+      class="bg-slate-900 hover:bg-blue-600 text-white px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest
+             shadow-lg shadow-slate-900/10 transition-all active:scale-95">
+      Apply Filter
+    </button>
+  </form>
+
+  <!-- Table -->
+  <div class="overflow-x-auto">
+    <table class="w-full">
+      <thead>
+        <tr class="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] border-b border-slate-50">
+          <th class="text-left pb-5 pl-4">Reg ID</th>
+          <th class="text-left pb-5">Team</th>
+          <th class="text-left pb-5">Team Leader</th>
+          <th class="text-left pb-5">Final Score</th>
+        </tr>
+      </thead>
+      <tbody class="text-sm">
+        {{ rows }}
+      </tbody>
+    </table>
+  </div>
+
+</div>

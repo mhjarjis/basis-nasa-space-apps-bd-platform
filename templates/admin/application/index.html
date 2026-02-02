@@ -1,0 +1,67 @@
+<div class="bg-white rounded-[2.5rem] p-8 shadow-sm border border-slate-100 animate__animated animate__fadeIn">
+
+    <form method="get" class="flex flex-wrap items-center gap-4 mb-10">
+        <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-slate-400">
+                <i class="fa-solid fa-magnifying-glass text-xs"></i>
+            </span>
+            <input name="q" value="{{ search }}" placeholder="Search team / university..."
+                class="pl-10 pr-4 py-3 w-72 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 focus:bg-white transition-all text-sm font-medium">
+        </div>
+
+        <div class="relative">
+            <select name="status" 
+                class="appearance-none pl-4 pr-10 py-3 bg-slate-50 border border-slate-100 rounded-2xl outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 focus:bg-white transition-all text-sm font-bold text-slate-600 cursor-pointer">
+                <option value="">All Status</option>
+                <option value="pending">Pending</option>
+                <option value="approved">Approved</option>
+                <option value="rejected">Rejected</option>
+            </select>
+            <span class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-slate-400">
+                <i class="fa-solid fa-chevron-down text-[10px]"></i>
+            </span>
+        </div>
+
+        <button type="submit" 
+            class="bg-slate-900 hover:bg-blue-600 text-white px-8 py-3 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-slate-900/10 transition-all active:scale-95">
+            Apply Filter
+        </button>
+        <a href="/admin/applications/export"
+        class="bg-blue-600 text-white px-6 py-3 rounded-2xl text-xs font-black uppercase">
+        Export Excel
+        </a>
+    </form>
+
+    <div class="overflow-x-auto">
+        <table class="w-full">
+            <thead>
+                <tr class="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] border-b border-slate-50">
+                    <th class="text-left pb-5 pl-4">Team Details</th>
+                    <th class="text-left pb-5">Location</th>
+                    <th class="text-left pb-5">University</th>
+                    <th class="text-center pb-5">Status</th>
+                    <th class="text-center pb-5">Action</th>
+                </tr>
+            </thead>
+            <tbody class="text-sm">
+                {{ rows }}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-8 flex items-center justify-between border-t border-slate-50 pt-6">
+        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">
+        {{ pagination_text }}
+        </p>
+
+        <div class="flex space-x-2">
+        <a href="?page={{ prev_page }}" class="p-2 border rounded-xl">
+            <i class="fa-solid fa-chevron-left text-xs"></i>
+        </a>
+        <a href="?page={{ next_page }}" class="p-2 border rounded-xl">
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+        </a>
+        </div>
+    </div>
+
+</div>

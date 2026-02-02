@@ -1,0 +1,67 @@
+<div class="max-w-7xl mx-auto space-y-8">
+
+  <div class="flex items-start justify-between gap-6">
+    <div>
+      <a href="/volunteer/dashboard" class="text-blue-600 font-bold text-xs uppercase tracking-widest flex items-center mb-3">
+        <i class="fa-solid fa-chevron-left mr-2"></i> Back to Assigned Teams
+      </a>
+      <h1 class="text-3xl font-black text-slate-900">Scoring • Team #{{ registration_id }}</h1>
+      <p class="text-slate-500 font-medium">Please review the project and submit your marks.</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+    <!-- Block 1: Team & Project Info -->
+    <div class="lg:col-span-6 bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm">
+      <h2 class="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Project Details</h2>
+
+      <div class="space-y-4">
+        <div>
+          <div class="text-xs font-black uppercase tracking-widest text-slate-400">Team Name</div>
+          <div class="text-lg font-black text-slate-900">{{ team_name }}</div>
+        </div>
+
+        <div>
+          <div class="text-xs font-black uppercase tracking-widest text-slate-400">Project Title</div>
+          <div class="text-lg font-black text-slate-900">{{ project_title }}</div>
+        </div>
+
+        <div>
+          <div class="text-xs font-black uppercase tracking-widest text-slate-400">Category</div>
+          <div class="text-sm font-bold text-slate-700">{{ project_category }}</div>
+        </div>
+
+        <div>
+          <div class="text-xs font-black uppercase tracking-widest text-slate-400">Description</div>
+          <div class="text-sm text-slate-600 leading-relaxed">{{ project_description }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Block 2: Links -->
+    <div class="lg:col-span-6 bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm">
+      <h2 class="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-6">Links</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <a href="{{ github_link }}" target="_blank"
+           class="p-4 bg-slate-900 rounded-2xl flex items-center justify-center space-x-3 hover:bg-blue-600 transition-all text-white">
+          <i class="fa-brands fa-github text-xl"></i>
+          <span class="text-xs font-black uppercase">GitHub</span>
+        </a>
+
+        <a href="{{ video_link }}" target="_blank"
+           class="p-4 bg-red-50 rounded-2xl flex items-center justify-center space-x-3 hover:bg-red-100 transition-all text-red-600">
+          <i class="fa-brands fa-youtube text-xl"></i>
+          <span class="text-xs font-black uppercase">Video</span>
+        </a>
+
+        <a href="{{ team_url }}" target="_blank"
+           class="md:col-span-2 p-4 bg-slate-50 rounded-2xl flex items-center justify-center space-x-3 hover:bg-slate-100 transition-all text-slate-700 border border-slate-100">
+          <i class="fa-solid fa-earth-asia text-xl text-slate-400"></i>
+          <span class="text-xs font-black uppercase">NASA Team URL</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
